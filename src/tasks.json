@@ -1,0 +1,65 @@
+[
+  {
+    "name": "AUX-21",
+    "description": "Login & Roles",
+    "points": 55,
+    "depends": [],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-99",
+    "description": "Create Patient",
+    "points": 37,
+    "depends": ["AUX-94"],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-98",
+    "description": "Quick Search",
+    "points": 30,
+    "depends": ["AUX-94"],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-97",
+    "description": "Enrollment",
+    "points": 80,
+    "depends": ["AUX-94","AUX-99"],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-96",
+    "description": "Smart Card",
+    "points": 41,
+    "depends": ["AUX-94","AUX-99"],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-95",
+    "description": "Recent Programs",
+    "points": 30,
+    "depends": ["AUX-97"],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-94",
+    "description": "Landing",
+    "points": 20,
+    "depends": [],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-93",
+    "description": "View Enrollments",
+    "points": 20,
+    "depends": ["AUX-97"],
+    "progress": 0 
+  },
+  {
+    "name": "AUX-92",
+    "description": "Salesforce API",
+    "points": 30,
+    "depends": [],
+    "progress": 0
+  }
+]

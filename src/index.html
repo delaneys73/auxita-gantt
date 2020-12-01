@@ -1,0 +1,75 @@
+<html>
+<head>
+  <style type="text/css">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    svg > text {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    }
+  </style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(loadTasksAndDraw);
+
+    function daysToMilliseconds(days) {
+      return days * 24 * 60 * 60 * 1000;
+    }
+
+    function loadTasksAndDraw() {
+      fetch("tasks.json")
+      .then(response => response.json())
+      .then(json => drawChart(json));
+    }
+
+    function join(arr) {
+      var first = true;
+      var rtn = "";
+      for (idx in arr) {
+        if (first) {
+          rtn = arr[idx];
+          first = false;
+        } else {
+          rtn += ","+arr[idx];
+        }
+      }
+      return rtn;
+    }
+
+    function drawChart(json) {
+
+      
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Task ID');
+        data.addColumn('string', 'Task Name');
+        data.addColumn('date', 'Start Date');
+        data.addColumn('date', 'End Date');
+        data.addColumn('number', 'Duration');
+        data.addColumn('number', 'Percent Complete');
+        data.addColumn('string', 'Dependencies');
+
+        var rows = [];
+        for (index in json) {
+          var row = json[index];
+          rows.push([row.name, row.description, null, null, daysToMilliseconds(row.points),0,join(row.depends)]);
+        }
+      
+      data.addRows(rows);
+
+      var options = {
+        height: 600,
+        fontName: "Arial",
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div"></div>
+</body>
+</html>
